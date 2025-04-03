@@ -1,70 +1,255 @@
-# Getting Started with Create React App
+# 이지훈 (학번: 202130124)
+## 4월 3일(5주차)
+#### 5주차 학습내용
+#### 1. Hook사용하기
+- use로 시작하는 함수를 hook이라고 함.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 훅은 리액트 클래스형 컴포넌트에서 이용하던 코드를 작성할 필요없이 함수형 컴포넌트에서 다양한 기능을 사용할 수 있게 만들어준 라이브러리라고 할 수 있는데 React 16.8버전에 새로 추가된 기능이다. 이는 함수형 컴포넌트에 맞게 만들어진 것으로 함수형 컴포넌트에서만 사용 가능하다.
 
-## Available Scripts
+#### 2. hooks의 사용 규칙
 
-In the project directory, you can run:
+##### 최상위에서만 Hook을 호출해야한다.
 
-### `npm start`
+- 반복문이나 조건문 혹은 중첩된 함수 내에서 Hook을 호출하면 안된다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 리액트 훅은 호출되는 순서에 의존하기 때문에 조건문이나 반복문 안에서 실행하게 될 경우 해당 부분을 건너뛰는 일이 발생할 수도 있기 때문에 순서가 꼬여 버그가 발생할 수 있다. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 그렇기 때문에 이 규칙을 따르면 useState 와 useEffect가 여러번 호출되는 경우에도 Hook의 상태를 올바르게 유지할 수 있게 된다.
 
-### `npm test`
+- Hook은 React의 렌더링 및 상태 관리 메커니즘과 밀접하게 연결되어 있으며, 아래와 같은 규칙을 따라야 함.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**if, for, while 등의 블록 내부에서 Hooks를 호출하면 안 됨.
+ 함수의 조건문 내부에서 호출하면 실행 순서가 달라질 수 있기 때문.**
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### 리액트 함수 내에서만 Hook을 호출해야한다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Hook은 일반적인 js 함수에서는 호출하면 안된다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 함수형 컴포넌트나 custom hook에서는 호출 가능하다.
 
-### `npm run eject`
+- React 함수형 component 또는 사용자 Hook 내부에서만 사용 가능.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 일반적인 JavaScript 함수에서 useState, useEffect 등의 Hook을 사용 할 수 없음.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 왜 function형 컴포넌트에서만 Hook을 사용할까?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- class형 component는 lifecycle 함수를 통해 상태 관리를 했음.
+- 그런 이유 떄문에 class형 component는 유지보수가 어렵고 복잡해질 수 있음.
+- React는 component의 상태 관리(lifecycle) 와 로직을 더 간결하게 만들기 위해 Hooks를 사용.
+ 
+ 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 3월 27일(4주차)
+#### 4주차 학습내용
+1. component 생성 및 nesting(중첩)
+- component는 고유한 로직과 모양을 가진 UI의 일부
+- component는 버튼처럼 작을 수도 있고, 전체 페이지처럼 클 수도 있음.
+- component는 마크업를 변환(return)하는 JavaScript 함수.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- export default 키워드는 파일내의 componen중 기본 component를 지정합니다.
+- 이 키워드의 사용도 JavaScript 문법입니다.
+> 좀더 구체적으로 알고 싶다면 사이트의 MDN혹은 javascript.info 링크를 확인하세요.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. 스타일 추가하기
+- React에서는 className으로 CSS클래스를 지정합니다.
+- className은 HTML의 class 속성과 동일한 방식으로 동작합니다.
+- CSS 규칙은 별도의 CSS 파일에 작성합니다. 그런데 React는 CSS 파일을 추가하는 방법을 규정하지는 않습니다.
+> 정적 페이지를 작성할 때와 동일한 방법을 지원합니다.
 
-### Code Splitting
+- 가장 가단한 방법은 HTML에 link 태그를 추가하는 것.
+> 그러나 link를 추가하면 정적 페이지를 수정해야 하기 떄문에 추천 x
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. 조건부 렌더링
 
-### Analyzing the Bundle Size
+- React에서 조건문을 작성하는데에는 특별한 문법이 필요 없습니다.
+- 일반적인 자바스크립트 코드를 작성할 때 사용하는 것과 동일한 방법을 사용합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. 리스트 렌더링
 
-### Making a Progressive Web App
+- 컴포넌트 리스트를 렌더링하기 위해서는 for문 및 map() 함수와 같은 자바스크립트 기능을 사용합니다.
+- il에 key 속성arrtibute이 있는 것을 주목해야함.
+- 목록을 사용할 때는 각 항목에 대해 고유하게 식별하는 문자열 또는 숫자를 전달해야 함.
+- 항목을 삽입, 삭제 또는 재정렬할 때 어떤 일이 일어났는지 알기 위해 Key를 사용.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## 3월20일(3주차)
+#### 의존성 관리와 package.json
+> 의존성이란 하나의 소프트웨어가 다른 소프트웨어에 의지하여 동작하는 걸 말한다. 즉 어떤 프로젝트에 사용된 각종 패키지 등의 버전을 동일하게 유지하기 위한 것.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### 중요사항 
+- 협업을 할 때는 팀원들 각자의 컴퓨터에 같은 패키지를 설치해 동일한 개발 환경 구성.
+코드는 GitHub등 Git Server를 이용하지만, 노드 패키지는 각 팀원들이 설치해야 함.
+의존성을 무시하면 다른 버전의 패키지를 설치 및 개발 프로젝트 오류 발생.
 
-### Deployment
+**개인의 경우도 GitHub에 코드를 내려 받은 후 개발 해야 할 수도 있음.**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### 의존성을 관리하는 이유
+- npm install 또는 Yarn install 한 줄로 모든 의존성 자동 설치 가능.
+특정 버전의 라이브러리 쉽게 업데이트 가능.
+package-lock.json을 활용하면 동일한 패키지를 정확한 버전으로 설치 가능.
 
-### `npm run build` fails to minify
+#### 중복 설치 방지
+- 필요 없는 라이브러리 제거하여 프로젝트를 가볍게 유지 가능.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**package.json은 이런 의존성을 체계적으로 관리하는 역활을 함. 프로젝트에 필요한 라이브러리를 쉽게 설치하고 업데이트를 유지할 수 있도록 도와줌.**
+
+### node module 재설치
+
+1. node modules 폴더와 package-lock.json 파일 삭제
+`$rm -rf node modules package-lock.json`
+
+2. npm 패키지의 임시 저장소인 cache 초기화
+`$npm chche clean --force`
+
+3. 패키지를 다시 설치
+`$ npm install`
+
+#### 삭제하는 이유 
+- package-lock.json 손상 및 잘못된 의존성.
+- 최신 버전의 패키지를 다시 받고 싶을 때
+- 팀 프로젝트에서 다른 팀원이 이상한 상태로 package-lock.json을 업데이트 한 경우.
+
+#### ***모든 플랫폼에서 최고의 성능을 발휘하는 React***
+1.  리액트를 사용하면 동일한 기술을 사용하여, 웹 앱과 네이티브 앱을 모두 구축 할 수 있음.
+2. 각 플랫폼의 고유한 강점을 활용하여 모든 플랫폼 잘 어울리는 인터페이스를 구현할 수 있음.
+
+**기본적으로 사람들은 빠른 웹을 사용하고 싶음.**
+
+1. 사람들은 네이티브 앱이 자신의 플랫폼과 같은 모양의 느낌을 주기를 원한다. React Nativ와 Expo를 사용하면 Android, IOS 등을 위한 앱을 리액트로 빌드할 수 있음.
+
+2. 앱이 네이티브처럼 보이고 느껴지는 이유는 UI가 네이티브이기 때문 즉 Web 뷰가 아니라 플랫폼에서 제공하는 Android 및 IOS View를 사용하기 때문.
+
+3. 리액트를 사용하면 앱 개발자도 네이티브 개발자도 될 수 있고 사용자 경험의 희생 없이 다양한 플랫폼에 앱을 출시 가능
+
+4. 기업에서는 플랫폼 간의 장벽을 허물고, 전체 기능을 협업을 통해 개발할 수 있는 팀을 구성할 수 있음.
+
+## 3월13일(2주차)
+### Node.js의 대하여
+
+- Node.js는 JavaScript를 기반으로 사용하여 JavaScript는 개발 공부를 처음 한 사람도 쉽게 익힐 수 있을 만큼 난이도가 낮다. 개발자 커뮤니티가 잘 돼 있다.
+
+- Node.js는 개발자들 사이에서 인기가 높기 때문에 커뮤니티에는 이미 개발자들이 만들어 공유한 다양한 패키지들이 있다. 그래서 npm을 잘 활용하면 유용한 기능들을 쉽게 구현할 수 있다.
+
+- Node.js를 학습한다는건 JavaScript를 활용할 줄 알게 된다는 사실이라서
+Node를 배운다는건 프론트엔드 부터 풀스택 개발자 까지도 가능하다는 것.
+프론트 엔드 영역도 쉽게 파악 할 수 있다는 것에 대단함을 느낌.
+
+- Node.js는 가볍고 빠른 서비스에 어울린다고 전에 배운 게 생각이 났다
+다른 무거운 언어 Java를 Node랑 비교 하면 훨 무겁다고 들었다 특히 javaPlugin , Module을 추가해 구성하면 Node.js가 얼마나 빠르고 가벼운지를 알 수 있을 것이다.
+
+**스트리밍 사이트로 유명한 ott 넷플릭스가 있는데 이 사이트도 Node를 활용하여 안정적인 서비스를 제공하고 있는 걸로 알고있다.**
+
+
+# React
+### React에 대하여
+
+리액트를 공부하기 전 앞서 리액트에 대해 알아보자
+
+- 리액트(React)는 Facebook(현재 Meta)에서 개발한 프론트엔드 라이브러리입니다. 주로 사용자 인터페이스(UI)를 개발하는 데에 중점을 두고 있죠. 이 라이브러리를 사용하면 실시간 대시보드, 소셜 미디어 애플리케이션, 전자상거래 플랫폼과 같은 다양한 종류의 웹 애플리케이션을 쉽게 만들 수 있습니다.
+리액트는 프론트엔드 개발자들 사이에서 매우 인기가 높은 도구입니다. 활발한 커뮤니티와 다양한 라이브러리와의 호환성을 통해 개발자들이 쉽게 정보를 공유하고 협업할 수 있기 때문인데요. 리액트가 많은 개발자들에게 사랑받고 있다는 사실은 다양한 설문조사와 통계 데이터에서 확인할 수 있습니다.
+
+- React는 사용자 인터페이스를 구축하기 위한 선언적이고 효율적이며 유연한 JavaScript 라이브러리입니다. “컴포넌트”라고 불리는 작고 고립된 코드의 파편을 이용하여 복잡한 UI를 구성하도록 돕습니다.
+
+### React 장점
+1. 개발 생산성이 높다
+화면에 구성되는 요소들을 하나하나 개발하지 않고 반복되는 것들은 컴포넌트를 재사용해 생산성을 높일 수 있습니다. 마치 레고 조립으로 수많은 형태를 완성하는 형식과 비슷합니다. 오류가 생겼을 때도 전체 페이지를 수정하는 대신 해당 컴포넌트만 수정하면 되기 때문에 문제 해결도 쉽습니다.
+​
+2. 입문자도 흥미를 쉽게 느낄 수 있다
+학습 커브가 높지만, 전세계적으로 활용도가 높아서 커뮤니티 도움이나 다양한 학습 자료를 활용하면 입문자도 빠르게 개발을 시작할 수 있어요. 기초적인 프로그래밍 지식만 있어도 손쉽게 앱 개발을 경험할 수 있습니다.
+​
+3. 사용하는 기업이 많다
+전 세계 65만 개 프론트엔드 채용 공고를 분석한 결과, 리액트 채용 공고는 약 35만 5000개 정도로 압도적인 1위를 차지했습니다. 국내에서도 11번가, 티몬, 오피지지, 카카오페이 등 수많은 기업에서 프론트엔드 개발에 리액트를 사용하고 있습니다.
+
+### 개발 플랫폼
+1. Node.js
+확장성 있는 네트워크 애플리케이션(특히 서버 사이드) 개발에 사용되는 소프트웨어 플랫폼이다.
+작성 언어로 자바스크립트를 활용한다.
+안정적이고 신뢰도가 높은 LTS 버전, 최신 기능이 포함된 Current 버전이 있다.
+→ 이번 프로젝트에서는 안정성 보장을 위해 LTS 버전을 사용
+
+### 패키지 관리자
+1. npm
+- Node.js를 설치할 때 함께 설치되는 기본 패키지 관리자이다.
+- 사람들이 만들어 온라인 플랫폼에 게시한 패키지를 쓸 수 있다.
+- 패키지를 한 번에 하나씩 설치한다.
+- 보안 측면에서 yarn보다 취약하다는 문제가 있는 것으로 알려졌으나, 최근에는 업데이트를 통해 보안 문제를 많이 해결한 것으로 보인다.
+
+2. yarn
+- 여러 패키지를 동시에 설치하기 때문에 패키지 설치는 npm보다 빠르다.
+- yarn.lock 또는 package.json 파일에 있는 것만을 설치한다.
+`npm install yarn --global`
+
+### 상태 관리 라이브러리
+
+-상태 관리는 여러 컴포넌트들 간에 데이터를 공유하는 방법이다. 이 상태(state)는 자식 컴포넌트에게만 전달할 수 있는데, 컴포넌트가 많아지고 복잡해질 수록 이 상태를 전달하는 것이 어려워진다.
+
+**이 문제를 해결하기 위해서 사용하는 것이 상태 관리 라이브러리로, 상태를 전역 변수처럼 만들어 모든 컴포넌트에서 접근이 가능하도록 만들어 준다.**
+
+1. Redux
+
+JavaScript 앱에 사용하는 상태 관리 라이브러리이다. React, Vue 등 다른 라이브러리와 함께 사용한다.
+현재 상태 관리 라이브러리로 가장 많이 사용되고, 값의 변경 사항을 DevTools를 이용해 확인할 수 있다. 신뢰성 있는 검증된 라이브러리이다.
+
+`$yarn add @reduxjs/toolkit`
+
+2. Recoil
+
+React를 활용한 앱에 사용하는 상태 관리 라이브러리이다.
+React를 써본 사람이면 금방 이해할 만한 직관적이고 간단한 구조로 이루어져 있고, 코드의 양이 Redux에 비해 적은 편이다. 사용하는 방식이 React에 가깝다고 볼 수 있다.
+
+`$yarn add recoil`
+
+### 웹 컴포넌트 스타일링
+
+#### 1. CSS-in-JS
+
+- JavaScript 코드에서 CSS를 작성하는 방식이다. 중복되는 클래스네임을 고려할 필요가 없으며, JS 코드와 CSS가 상태값을 공유할 수 있어 개발이 편리하다는 장점이 있다.
+
+- 하지만 타인이 코드를 이해하려면 두 번 왔다갔다 해야 한다는 단점이 있다.
+
+##### Styled Components
+
+ - props에 따라 다른 스타일을 적용하는 기능을 제공한다.
+
+- props가 많아지면 …props의 형태로 넘겨서 사용이 가능하다.
+
+- CSS-in-JS 라이브러리로 가장 많이 사용되고, 전역 스타일 적용(다크모드 등)에 편리한 듯하다.
+
+##### Emotion
+- styled-components 보다 퍼포먼스가 전반적으로 좋게 나온다는 평이 있다.
+
+- JSX 안에서 해당 태그가 어떤 태그인지 바로 알 수 있다. styled-components는 이게 안 된다.
+
+- @emotion/react, @emotion/styled
+
+- CSS props를 결합할 수 있다.
+
+#### 2. CSS-in-CSS
+
+- CSS를 모듈화하여 사용한다. 사용자가 정의한 클래스네임과 자동으로 만들어진 고유한 클래스네임을 만들어 scope를 제한하는 방식이다. JavaScript 해석 과정이 따로 없기 때문에 훨씬 빠르다.
+
+### 명령어 정리
+
+> npx create-react-app (프로젝트 명)
+
+> cd chalkak (생성한 프로젝트 폴더로 이동)
+
+> npm start
+
+> npm install react-router-dom (react-router-dom 설치)
+
+### 필요 모듈 설치
+> npm init -y
+
+> npm install express
+
+>npm install cors
+
+>npm install --save-dev nodemon
+
+>npm install axios
+
+
+
