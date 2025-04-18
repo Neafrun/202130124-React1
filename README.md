@@ -1,4 +1,42 @@
 # 이지훈 (학번: 202130124)
+## 4월 10일(6주차)
+#### 6주차 학습내용
+
+#### 1. useState 사용법
+##### 사용자와 상호작용하는 컴포넌트 만들기
+
+1. 파일 상단에 useState를 Import합니다.
+2. Square 컴포넌트에서 value porp을 제거합니다. 대신 useState를 사용합니다.
+3. Square 컴포넌트의 시작 부분에 useState를 호출하고, value라는 이름의 state 변수를 변환하도록 한다.
+
+##### state 끌어올리기
+
+1. Board 컴포넌트를 편집해서 9개 Square에 해당하는 9개의 null의 배열을 기본값으로 하는 state 변수 squares를 선언.
+
+` //...
+export default function Board() {
+    const [squares, setSquares] = useState(Array(9),fill(null));
+    return (
+        //...
+    ); 
+} `
+- Array(9).fill(null)은 9개의 엘리먼트로 배열 생성, 각 엘리먼트를 null로 설정 함. (참고 : developer.mozilla.org) 
+- state 변수 squares와 함수 setSquares 선언.
+- 배열의 각 항목은 각 Square 컴포넌트의 값에 해당.
+- 보드를 채우면, squares 배열은 다음과 같은 모양이 됨.
+
+` ['o', null, 'x', 'x', 'x', 'o', 'o', null, null,]`
+
+#### 2. 컴포넌트 분리하기
+- 문서에서는 Board와 Square를 함께 두었지만 우리는 모두 분리합니다.
+
+1. component이름과 동일한 파일을 만듭니다.
+2. 해당 파일에 코드를 복사하고 export default 키워드를 추가 합니다.
+3. 필요한 component와 useState를 추가합니다.
+4. App.js에서 해당 코드를 삭제하고, Board component를 import해 줍니다.
+5. App.js에서 useState의 import를 제거합니다.
+6. 정상적으로 동작하는지 확인힙니다.
+
 ## 4월 3일(5주차)
 #### 5주차 학습내용
 #### 1. Hook사용하기
